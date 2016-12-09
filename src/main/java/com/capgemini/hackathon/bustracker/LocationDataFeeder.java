@@ -1,11 +1,9 @@
 package com.capgemini.hackathon.bustracker;
 
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
-import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
@@ -19,22 +17,27 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Component
 @EnableWebSocket
 @EnableScheduling
-public class LocationDataFeedHandler extends TextWebSocketHandler {
+public class LocationDataFeeder extends TextWebSocketHandler {
 
     private WebSocketSession session;
     private AtomicInteger counter = new AtomicInteger(0);
 
-    @Scheduled(fixedDelay = 1000)
-    public void sendLocationFeed() {
-        if (this.session != null && this.session.isOpen()) {
+    public void feedData(Location location) {
+        String json = location.asJson();
+        if (isSessionOpen() && json != null) {
             try {
-                this.session.sendMessage(new TextMessage(String.valueOf(counter.incrementAndGet())));
+                System.out.println("Sending Json: "+json);
+                this.session.sendMessage(new TextMessage(json));
             } catch (IOException e) {
                 System.out.println("Could feed data to client. Error: "+e.getMessage());
             }
         } else {
             System.out.println("No connected clients to feed the data.");
         }
+    }
+
+    private boolean isSessionOpen() {
+        return this.session != null && this.session.isOpen();
     }
 
     @Override

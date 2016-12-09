@@ -12,8 +12,9 @@
             console.log("Connected to server...");
         }
         ws.onmessage = function(e) {
-            var counter = e.data;
-            document.getElementById("counter").innerText = counter;
+            var loc = JSON.parse(e.data);
+            document.getElementById("lat").innerText = loc.lat;
+            document.getElementById("lng").innerText = loc.lng;
         }
     }
 
@@ -28,8 +29,10 @@
 <h1>Hello World</h1>
 
 <div>
-    <span>Counter: </span><span id="counter"></span>
-
+    <span>Latitude: </span><span id="lat"></span>
+</div>
+<div>
+    <span>Longitude: </span><span id="lng"></span>
 </div>
 </body>
 </html>
