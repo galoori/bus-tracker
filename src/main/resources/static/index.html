@@ -3,8 +3,33 @@
 <head>
     <meta charset="utf-8">
     <title>Hackathon</title>
+    <script type="text/javascript">
+    var url = "ws://localhost:8090/location/feed";
+    var ws;
+    function connect() {
+        ws = new WebSocket(url);
+        ws.onopen = function() {
+            console.log("Connected to server...");
+        }
+        ws.onmessage = function(e) {
+            var counter = e.data;
+            document.getElementById("counter").innerText = counter;
+        }
+    }
+
+    function disconnect() {
+        ws.close();
+        console.log("Disconnected from server...")
+    }
+
+    </script>
 </head>
-<body>
+<body onload="connect()">
 <h1>Hello World</h1>
+
+<div>
+    <span>Counter: </span><span id="counter"></span>
+
+</div>
 </body>
 </html>
