@@ -9,7 +9,7 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
  * Created by galoori on 12/9/2016.
  */
 @Configuration
-public class LocationDataFeedConfiguration implements WebSocketConfigurer {
+public class LocationDataFeederConfiguration implements WebSocketConfigurer {
 
     @Autowired
     private LocationDataFeeder locationDataFeeder;
