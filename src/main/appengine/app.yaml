@@ -7,7 +7,7 @@ runtime_config:  # Optional
 handlers:
 - url: /.*
   script: this field is required, but ignored
-  secure: always  # Require HTTPS
+  #secure: always  # Require HTTPS
 
 manual_scaling:
   instances: 1

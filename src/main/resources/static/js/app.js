@@ -34,6 +34,7 @@
         marker = new google.maps.Marker({
                   position: capgemini,
                   map: map,
+                  //icon: "http://icons.iconarchive.com/icons/iconshock/real-vista-transportation/48/vintage-car-icon.png",
                   title: 'Capgemini!'
                 });
 
