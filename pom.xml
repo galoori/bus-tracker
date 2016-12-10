@@ -8,6 +8,9 @@
     <artifactId>bustracker</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <name>bustracker</name>
+    <description>Simple webapp to track a bus in real time using Google Maps API, Spring Boot and WebSockets</description>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -36,6 +39,11 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>appengine-maven-plugin</artifactId>
+                <version>1.0.0</version>
             </plugin>
         </plugins>
     </build>

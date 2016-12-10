@@ -1,4 +1,4 @@
-    var url = "ws://localhost:8090/location/feed";
+    var url = "ws://localhost:8080/location/feed";
     var ws;
     var map;
     var marker;
