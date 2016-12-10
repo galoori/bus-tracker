@@ -2,6 +2,7 @@
     var ws;
     var map;
     var marker;
+    var bounds;
 
     function connect() {
         ws = new WebSocket(url);
@@ -12,6 +13,8 @@
             var loc = JSON.parse(e.data);
             console.log(loc)
             marker.setPosition(loc);
+            bounds.extend(marker.position);
+            map.fitBounds(bounds);
         }
     }
 
@@ -26,11 +29,15 @@
 
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 17.420438, lng: 78.337980},
-          zoom: 15
+          zoom: 17
         });
         marker = new google.maps.Marker({
                   position: capgemini,
                   map: map,
                   title: 'Capgemini!'
                 });
+
+        bounds = new google.maps.LatLngBounds();
+        bounds.extend(marker.position);
+        map.fitBounds(bounds);
     }
