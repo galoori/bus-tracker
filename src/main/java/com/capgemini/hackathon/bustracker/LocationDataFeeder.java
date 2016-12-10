@@ -9,6 +9,7 @@ import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -22,12 +23,11 @@ public class LocationDataFeeder extends TextWebSocketHandler {
     private WebSocketSession session;
     private AtomicInteger counter = new AtomicInteger(0);
 
-    public void feedData(Location location) {
-        String json = location.asJson();
-        if (isSessionOpen() && json != null) {
+    public void feedData(String feed) {
+        if (isSessionOpen() && feed != null) {
             try {
-                System.out.println("Sending Json: "+json);
-                this.session.sendMessage(new TextMessage(json));
+                System.out.println("Sending Json: "+feed);
+                this.session.sendMessage(new TextMessage(feed));
             } catch (IOException e) {
                 System.out.println("Could feed data to client. Error: "+e.getMessage());
             }

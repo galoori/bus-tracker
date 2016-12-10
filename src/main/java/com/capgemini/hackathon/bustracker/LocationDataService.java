@@ -5,7 +5,10 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.socket.TextMessage;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -16,28 +19,15 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Service
 public class LocationDataService {
 
-    private static List<Location> locationData = new ArrayList<Location>();
-    static {
-        locationData.addAll(LocationDataStub.fetchLocationData());
-    }
-
-    private AtomicInteger counter = new AtomicInteger(0);
-
     @Autowired
     LocationDataFeeder locationDataFeeder;
 
+    @Autowired
+    LocationDataStub locationDataStub;
+
     @Scheduled(fixedDelay = 1000)
     public void sendLocationFeed() {
-        locationDataFeeder.feedData(getNextLocationData());
+        String feed = JsonUtils.asJson(locationDataStub.getBusLocationTick());
+        locationDataFeeder.feedData(feed);
     }
-
-    public Location getNextLocationData() {
-        int index = counter.getAndIncrement();
-        if (index < locationData.size()) {
-            return locationData.get(index);
-        } else {
-            return locationData.get(locationData.size()-1);
-        }
-    }
-
 }
