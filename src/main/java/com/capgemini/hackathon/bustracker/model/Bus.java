@@ -1,4 +1,4 @@
-package com.capgemini.hackathon.bustracker;
+package com.capgemini.hackathon.bustracker.model;
 
 /**
  * Created by galoori on 12/10/2016.

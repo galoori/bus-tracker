@@ -1,12 +1,10 @@
 package com.capgemini.hackathon.bustracker;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.capgemini.hackathon.bustracker.model.Bus;
+import com.capgemini.hackathon.bustracker.model.BusLocationTick;
+import com.capgemini.hackathon.bustracker.model.Location;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;

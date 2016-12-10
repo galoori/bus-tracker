@@ -1,5 +1,7 @@
 package com.capgemini.hackathon.bustracker;
 
+import com.capgemini.hackathon.bustracker.model.BusLocationTick;
+import com.capgemini.hackathon.bustracker.model.Location;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

@@ -64,9 +64,9 @@
                   infowindow1.open(map, marker1);
                 });
 
-        marker1.addListener('mouseout', function() {
+/*        marker1.addListener('mouseout', function() {
                   infowindow1.close();
-                });
+                });*/
 
         bounds = new google.maps.LatLngBounds();
         bounds.extend(marker1.position);
@@ -88,9 +88,9 @@
                   infowindow2.open(map, marker2);
                 });
 
-        marker2.addListener('mouseout', function() {
+/*        marker2.addListener('mouseout', function() {
                   infowindow2.close();
-                });
+                });*/
 
         bounds = new google.maps.LatLngBounds();
         bounds.extend(marker2.position);
