@@ -15,7 +15,7 @@ public class LocationDataStub {
 
     public static List<Location> fetchLocationData() {
         List<Location> locationData = new ArrayList<Location>();
-        InputStream is = LocationDataStub.class.getResourceAsStream("/static/json/data.json");
+        InputStream is = LocationDataStub.class.getResourceAsStream("/static/json/bus2.json");
         ObjectMapper mapper = new ObjectMapper();
         try {
             List<Location> locationList = mapper.readValue(is, new TypeReference<List<Location>>() {});
